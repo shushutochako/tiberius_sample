@@ -1,0 +1,25 @@
+version: '3.7'
+services:
+  app:
+    build: .
+    volumes:
+      - ./app:/app
+    working_dir: /app
+    tty: true
+    depends_on: 
+      - db
+  db:
+    image: microsoft/mssql-server-linux:2017-GA
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: "P@ssw0rd!"
+    volumes:
+      - rust-mssql-data:/var/opt/mssql/
+    ports:
+      - "1433:1433"
+  mssql_cil_client:
+    image: node:alpine
+    tty: true
+volumes:
+  rust-mssql-data:
+    driver: local
