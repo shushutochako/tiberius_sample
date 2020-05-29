@@ -1,6 +1,6 @@
 # tiberius_exmaple
 
-## Useage
+## Usage
 
 ### Run Container
 
